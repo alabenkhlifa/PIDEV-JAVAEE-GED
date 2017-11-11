@@ -66,8 +66,4 @@ public class WorkflowService implements WorkflowServiceLocal {
 			return true;
 		return false;
 	}
-	
-	public void testguit(){
-		System.out.print("test");
-	}
 }
