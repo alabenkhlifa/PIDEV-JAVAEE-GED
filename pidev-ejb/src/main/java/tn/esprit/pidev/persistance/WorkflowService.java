@@ -69,7 +69,5 @@ public class WorkflowService implements WorkflowServiceLocal {
 	public void test(){
 		System.out.print("hi");
 	}
-	public void test2(){
-		
-	}
+	
 }
