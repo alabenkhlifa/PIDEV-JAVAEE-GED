@@ -1,0 +1,17 @@
+tn\esprit\pidev\persistance\WorkflowServiceRemote.class
+tn\esprit\pidev\persistance\DirecteurService.class
+tn\esprit\pidev\persistance\WFPriorite.class
+tn\esprit\pidev\persistance\Workflow.class
+tn\esprit\pidev\persistance\WFHistoryPK.class
+tn\esprit\pidev\persistance\Employee.class
+tn\esprit\pidev\persistance\EmployeeServiceLocal.class
+tn\esprit\pidev\persistance\WorkflowServiceLocal.class
+tn\esprit\pidev\persistance\WFType.class
+tn\esprit\pidev\persistance\WFStatus.class
+tn\esprit\pidev\persistance\DataBasePopulator.class
+tn\esprit\pidev\persistance\DirecteurServiceLocal.class
+tn\esprit\pidev\persistance\WFHistory.class
+tn\esprit\pidev\persistance\Directeur.class
+tn\esprit\pidev\persistance\Document.class
+tn\esprit\pidev\persistance\EmployeeService.class
+tn\esprit\pidev\persistance\WorkflowService.class

@@ -1,0 +1,54 @@
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+	<ui:composition template="layout.xhtml">
+		<ui:define name="title">GED || WorkFlow || List</ui:define>
+		<ui:define name="main">
+			<div class="header-info">
+				<h1 class="header-title">
+					<strong>List</strong> WorkFlows
+				</h1>
+			</div>
+			<center>
+				<div class="card">
+					<div class="card-body">
+						<table class="table table-separated">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Priorité</th>
+									<th>Type</th>
+									<th>Date Création</th>
+									<th>Date Limite</th>
+									<th>Createur ID</th>
+									<th>Supprimer</th>
+								</tr>
+							</thead>
+							<tbody>
+								<ui:repeat var="wf" value="#{workflowBean.workflows}">
+									<tr class="bg-pale-secondary">
+										<th><h:outputText value="#{wf.id}" /></th>
+										<td><h:outputText value="#{wf.priorite}" /></td>
+										<td><h:outputText value="#{wf.type}" /></td>
+										<td><h:outputText value="#{wf.dateCreation}"><f:convertDateTime pattern="dd/MM/yyyy HH:mm"/></h:outputText></td>
+										<td><h:outputText value="#{wf.dateLimite}"><f:convertDateTime pattern="dd/MM/yyyy"/></h:outputText></td>
+										<td><h:outputText value="#{wf.createur.id}" /></td>
+										<td><center><h:form><h:commandButton action="#{workflowBean.supprimerWorkflow(wf)}" value="DEL" class="btn btn-w-md btn-outline btn-danger" /></h:form></center></td>
+									</tr>
+								</ui:repeat>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</center>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</h:html>
