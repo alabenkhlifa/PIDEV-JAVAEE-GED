@@ -68,5 +68,6 @@ public class WorkflowService implements WorkflowServiceLocal {
 	}
 	public void test2(){
 		System.out.println("test2");
+
 	}
 }
