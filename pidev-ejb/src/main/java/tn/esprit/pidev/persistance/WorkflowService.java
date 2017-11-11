@@ -66,8 +66,7 @@ public class WorkflowService implements WorkflowServiceLocal {
 			return true;
 		return false;
 	}
-	public void test2(){
-		System.out.println("test2");
-
+	public void test(){
+		System.out.print("hi");
 	}
 }
