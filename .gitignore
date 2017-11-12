@@ -1,2 +1,9 @@
--/pidev-ear/target
--/pidev-web/target
+# Created by https://www.gitignore.io/api/jboss,java-web
+
+### Java-Web ###
+## ignoring target file
+target/
+pidev-ear\target\
+*.DEPLOYED
+
+# End of https://www.gitignore.io/api/jboss,java-web
