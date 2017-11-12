@@ -28,9 +28,18 @@ public class WorkflowBean {
 	private DirecteurServiceLocal dSL;
 
 	List<Workflow> workflows;
+	List<Workflow> workflowsarchives;
 	private int DirecteurID;
 	Date form_datelimite;
 	Workflow workflow = new Workflow();
+	
+	public List<Workflow> getWorkflowsarchives() {
+		return workflowsarchives;
+	}
+
+	public void setWorkflowsarchives(List<Workflow> workflowsarchives) {
+		this.workflowsarchives = workflowsarchives;
+	}
 
 	public Date getForm_datelimite() {
 		return form_datelimite;
@@ -64,6 +73,7 @@ public class WorkflowBean {
 		return workflow;
 	}
 
+	//mch kémla 
 	public String updateWorkflow(){
 		HttpServletRequest req = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
 		int idworkflow = Integer.parseInt(req.getParameter("id"));
@@ -73,6 +83,7 @@ public class WorkflowBean {
 		return "";
 	}
 	
+	//Success
 	public void createWorkflow(ActionEvent actionEvent) {
 		Directeur d = dSL.findDirecteurById(DirecteurID);
 		workflow.setCreateur(d);
@@ -91,7 +102,8 @@ public class WorkflowBean {
 	@PostConstruct
 	public void Workflows() {
 		HttpServletRequest req = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
-		workflows = workflowServiceLocal.findAllWorkFlows();
+		workflows = workflowServiceLocal.findAllWorkFlows(false);
+		workflowsarchives = workflowServiceLocal.findAllWorkFlows(true);
 		//if(workflowServiceLocal.existantWorkflow(Integer.parseInt(req.getParameter("id"))))
 		if(null!=req.getParameter("id"))
 		updateWorkflow();
@@ -102,13 +114,58 @@ public class WorkflowBean {
 		//refreshPage();
 	}
 
+	//Success
 	public void supprimerWorkflow(Workflow W) throws IOException {
 		workflowServiceLocal.removeWorkFlow(W);
 		refreshPage();
 	}
 	
+	//Success
 	public void refreshPage() throws IOException {
 		ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
 		ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
+	}
+
+	public void CurrentWorkflows(){
+		workflows = workflowServiceLocal.findCurrentWorkflows(false);
+	}
+	
+	public void WorkflowsBytype(WFType type){
+		workflows = workflowServiceLocal.findWorkflowsbyType(false,type);
+	}
+	
+	public void WorkflowsarchivesBytype(WFType type){
+		workflowsarchives = workflowServiceLocal.findWorkflowsbyType(true,type);
+	}
+	
+	public void WorkflowsByCreateur(int idc){
+		workflows = workflowServiceLocal.findWorkflowsbyCreateur(false,idc);
+	}
+	
+	public void WorkflowsarchivesByCreateur(int idc){
+		workflowsarchives = workflowServiceLocal.findWorkflowsbyCreateur(true,idc);
+	}
+	
+	public void allWorkflows(){
+		workflows = workflowServiceLocal.findAllWorkFlows(false);
+	}
+	
+	public void allarchivedWorkflows(){
+		workflows = workflowServiceLocal.findAllWorkFlows(true);
+	}
+	
+	public void archiverWorkflow(int idWork){
+		workflowServiceLocal.archiverworkflow(idWork);
+		allWorkflows();
+	}
+	
+	public void dearchiverWorkflow(int idWork){
+		workflowServiceLocal.dearchiverworkflow(idWork);
+		try {
+			refreshPage();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

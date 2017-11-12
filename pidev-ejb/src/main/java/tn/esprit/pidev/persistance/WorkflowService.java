@@ -30,8 +30,8 @@ public class WorkflowService implements WorkflowServiceLocal {
 	}
 
 	@Override
-	public List<Workflow> findAllWorkFlows() {
-		return em.createQuery("select w from Workflow w order by w.id asc", Workflow.class).getResultList();
+	public List<Workflow> findAllWorkFlows(Boolean archive) {
+		return em.createQuery("select w from Workflow w where w.archive=:arch order by w.id asc", Workflow.class).setParameter("arch", archive).getResultList();
 	}
 
 	@Override
@@ -54,7 +54,6 @@ public class WorkflowService implements WorkflowServiceLocal {
 
 	@Override
 	public void createWorkFlowFromDetach(Workflow W) {
-		// TODO Auto-generated method stub
 		em.persist(em.merge(W));
 		em.flush();
 	}
@@ -66,8 +65,26 @@ public class WorkflowService implements WorkflowServiceLocal {
 			return true;
 		return false;
 	}
-	public void test(){
-		System.out.print("hi");
+	
+	@Override
+	public List<Workflow> findCurrentWorkflows(Boolean archive) {
+		return em.createQuery("select w from Workflow w where w.dateLimite > CURRENT_DATE and w.archive=:arch order by w.id asc", Workflow.class).setParameter("arch", archive).getResultList();
+	}
+	@Override
+	public List<Workflow> findWorkflowsbyType(Boolean archive,WFType type){
+		return em.createQuery("select w from Workflow w where w.type=:t and w.archive=:arch order by w.id asc", Workflow.class).setParameter("arch", archive).setParameter("t", type).getResultList();
+	}
+	@Override
+	public List<Workflow> findWorkflowsbyCreateur(Boolean archive,int idCreateur){
+		return em.createQuery("select w from Workflow w where w.createur.id=:idcreateur and w.archive=:arch order by w.id asc", Workflow.class).setParameter("arch", archive).setParameter("idcreateur", idCreateur).getResultList();
+	}
+	@Override
+	public void archiverworkflow(int idWorkflow){
+		em.createQuery("UPDATE Workflow w SET w.archive=true WHERE w.id =:idw").setParameter("idw", idWorkflow).executeUpdate();
+	}
+	@Override
+	public void dearchiverworkflow(int idWorkflow){
+		em.createQuery("UPDATE Workflow w SET w.archive=false WHERE w.id =:idw").setParameter("idw", idWorkflow).executeUpdate();
 	}
 	
 }

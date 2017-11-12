@@ -1,0 +1,70 @@
+<h:html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+<h:head>
+</h:head>
+<h:body>
+	<ui:composition template="layout.xhtml">
+		<ui:define name="title">GED || WorkFlow || Archive</ui:define>
+		<ui:define name="main">
+			<div class="header-info">
+				<h1 class="header-title">
+					<strong>Liste </strong>des WorkFlows archivés
+				</h1>
+			</div>
+			<div class="code-preview">
+                    <div class="flexbox flex-justified">
+                      <span>Priorité : <span class="badge badge-xl badge-dot bg-pale-danger"></span> Haute <span class="badge badge-xl badge-dot bg-pale-brown"></span> Normale <span class="badge badge-xl badge-dot badge-secondary"></span> Basse</span>
+                      <span></span>
+                      <span><h:form><h:commandButton class="btn btn-w-md btn-flat btn-danger" action="#{workflowBean.allarchivedWorkflows()}" value="tous" /></h:form></span>
+                    </div>
+            </div>
+			<center>
+				<div class="card">
+					<div class="card-body">
+						<table class="table table-separated" >
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Type</th>
+									<th>Date Création</th>
+									<th>Date Limite</th>
+									<th>Createur</th>
+									<th><center>Supprimer</center></th>
+									<th><center>Déarchiver</center></th>
+								</tr>
+							</thead>
+							<tbody data-provide="sortable" data-sortable-handle=".sortable-dot" data-sortable-id="3" aria-dropeffect="move">
+								<ui:repeat var="wf" value="#{workflowBean.workflowsarchives}">
+								<tr class="#{wf.priorite eq wFPriorityBean.priorities[0] ? 'bg-pale-danger' : ''}#{wf.priorite eq wFPriorityBean.priorities[1] ? 'bg-pale-brown' : ''}#{wf.priorite eq wFPriorityBean.priorities[2] ? 'bg-pale-secondary' : ''}" data-item-sortable-id="3" role="option" aria-grabbed="false" >
+										<th>
+										<span class="sortable-dot" draggable="true"></span>
+										<h:outputText value="#{wf.id}"/>
+										</th>
+										<td>
+										<h:form>
+										<h:commandButton action="#{workflowBean.WorkflowsarchivesBytype(wf.type)}" class="badge #{wf.type eq wFTypeBean.types[0] ? 'badge-success' : 'badge-warning'}" value="#{wf.type}" />
+										</h:form>
+										</td>
+										<td><h:outputText value="#{wf.dateCreation}"><f:convertDateTime pattern="dd/MM/yyyy HH:mm"/></h:outputText></td>
+										<td><h:outputText value="#{wf.dateLimite}"><f:convertDateTime pattern="dd/MM/yyyy"/></h:outputText></td>
+										<td><h:form><h:commandButton action="#{workflowBean.WorkflowsarchivesByCreateur(wf.createur.id)}" value="#{wf.createur.nom} #{wf.createur.prenom}" class="btn btn-pure btn-primary" /></h:form> </td>
+										<td><center><h:form><h:commandButton action="#{workflowBean.supprimerWorkflow(wf)}" value="Supprimer" class="btn btn-w-md btn-outline btn-danger"/></h:form></center></td>
+										<td><center><h:form><h:commandButton action="#{workflowBean.dearchiverWorkflow(wf.id)}" value="Déarchiver" class="btn btn-w-md btn-outline btn-dark"/></h:form></center></td>
+								</tr>
+								</ui:repeat>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</center>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</h:html>

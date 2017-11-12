@@ -15,26 +15,29 @@
 		<ui:define name="main">
 			<div class="header-info">
 				<h1 class="header-title">
-					<strong>List</strong> WorkFlows
+					<strong>Liste </strong>des WorkFlows
 				</h1>
 			</div>
 			<div class="code-preview">
                     <div class="flexbox flex-justified">
                       <span>Priorité : <span class="badge badge-xl badge-dot bg-pale-danger"></span> Haute <span class="badge badge-xl badge-dot bg-pale-brown"></span> Normale <span class="badge badge-xl badge-dot badge-secondary"></span> Basse</span>
                       <span></span>
-                      <span>
+                      <span><h:form><h:commandButton class="btn btn-w-md btn-flat btn-danger" action="#{workflowBean.allWorkflows()}" value="tous" /></h:form></span>
+                      <!--<span>
                       <label class="switch switch-border switch-info">
-                        <input type="checkbox" checked="">
+                        <span>En Cours </span>
+                        <input type="checkbox" checked="" onchange="check()" />
                         <span class="switch-indicator"></span>
-                        <span class="switch-description">Info</span>
+                        <span class="switch-description">Tous</span>
                       </label>
-                      </span>
+                      </span>-->
+                      <h:form><h:commandButton class="btn btn-w-md btn-flat btn-info" action="#{workflowBean.CurrentWorkflows()}" value="Courrants" /></h:form>
                     </div>
-                  </div>
+            </div>
 			<center>
 				<div class="card">
 					<div class="card-body">
-						<table class="table table-separated">
+						<table class="table table-separated" >
 							<thead>
 								<tr>
 									<th>ID</th>
@@ -43,18 +46,28 @@
 									<th>Date Limite</th>
 									<th>Createur</th>
 									<th><center>Supprimer</center></th>
+									<th><center>Archiver</center></th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody data-provide="sortable" data-sortable-handle=".sortable-dot" data-sortable-id="3" aria-dropeffect="move">
 								<ui:repeat var="wf" value="#{workflowBean.workflows}">
-								<tr class="#{wf.priorite eq wFPriorityBean.priorities[0] ? 'bg-pale-danger' : ''}#{wf.priorite eq wFPriorityBean.priorities[1] ? 'bg-pale-brown' : ''}#{wf.priorite eq wFPriorityBean.priorities[2] ? 'bg-pale-secondary' : ''}">
-										<th><a href="updateworkflow.jsf?id=#{wf.id}"><h:outputText value="#{wf.id}"/></a></th>
-										<td><span class="badge #{wf.type eq wFTypeBean.types[0] ? 'badge-success' : 'badge-warning'}">#{wf.type}</span></td>
+								<tr class="#{wf.priorite eq wFPriorityBean.priorities[0] ? 'bg-pale-danger' : ''}#{wf.priorite eq wFPriorityBean.priorities[1] ? 'bg-pale-brown' : ''}#{wf.priorite eq wFPriorityBean.priorities[2] ? 'bg-pale-secondary' : ''}" data-item-sortable-id="3" role="option" aria-grabbed="false" >
+										<th>
+										<span class="sortable-dot" draggable="true"></span>
+										<a href="updateworkflow.jsf?id=#{wf.id}"><h:outputText value="#{wf.id}"/></a>
+										</th>
+										<td>
+										<h:form>
+										<h:commandButton action="#{workflowBean.WorkflowsBytype(wf.type)}" class="badge #{wf.type eq wFTypeBean.types[0] ? 'badge-success' : 'badge-warning'}" value="#{wf.type}" />
+										</h:form>
+										</td>
 										<td><h:outputText value="#{wf.dateCreation}"><f:convertDateTime pattern="dd/MM/yyyy HH:mm"/></h:outputText></td>
 										<td><h:outputText value="#{wf.dateLimite}"><f:convertDateTime pattern="dd/MM/yyyy"/></h:outputText></td>
-										<td><h:outputText value="#{wf.createur.nom} #{wf.createur.prenom}" /></td>
+										<td><h:form><h:commandButton action="#{workflowBean.WorkflowsByCreateur(wf.createur.id)}" value="#{wf.createur.nom} #{wf.createur.prenom}" class="btn btn-pure btn-primary" /></h:form> </td>
 										<td><center><h:form><h:commandButton action="#{workflowBean.supprimerWorkflow(wf)}" value="Supprimer" class="btn btn-w-md btn-outline btn-danger"/></h:form></center></td>
-									</tr>
+										<td><center><h:form><h:commandButton action="#{workflowBean.archiverWorkflow(wf.id)}" value="Archiver" class="btn btn-w-md btn-outline btn-primary"/></h:form></center></td>
+										
+								</tr>
 								</ui:repeat>
 							</tbody>
 						</table>
