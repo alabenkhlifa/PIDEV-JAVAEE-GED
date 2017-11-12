@@ -3,7 +3,7 @@
 	<persistence-unit name="pidev-ejb">
 		<jta-data-source>java:/PidevDS</jta-data-source>
 		<properties>
-			<property name="hibernate.hbm2ddl.auto" value="update"/>
+			<property name="hibernate.hbm2ddl.auto" value="Drop-Create"/>
 		</properties>
 	</persistence-unit>
 </persistence>

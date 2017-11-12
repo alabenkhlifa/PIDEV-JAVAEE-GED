@@ -4,7 +4,9 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:jsf="http://xmlns.jcp.org/jsf"
 	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:p="http://primefaces.org/ui">
+	
 <h:head>
 </h:head>
 <h:body>
@@ -16,6 +18,11 @@
 					<strong>List</strong> WorkFlows
 				</h1>
 			</div>
+			<div class="code-preview">
+                    <div class="flexbox flex-justified">
+                      <span>Priorité : <span class="badge badge-xl badge-dot bg-pale-danger"></span> Haute <span class="badge badge-xl badge-dot bg-pale-brown"></span> Normale <span class="badge badge-xl badge-dot badge-secondary"></span> Basse</span>
+                    </div>
+                  </div>
 			<center>
 				<div class="card">
 					<div class="card-body">
@@ -23,24 +30,22 @@
 							<thead>
 								<tr>
 									<th>ID</th>
-									<th>Priorité</th>
 									<th>Type</th>
 									<th>Date Création</th>
 									<th>Date Limite</th>
-									<th>Createur ID</th>
-									<th>Supprimer</th>
+									<th>Createur</th>
+									<th><center>Supprimer</center></th>
 								</tr>
 							</thead>
 							<tbody>
 								<ui:repeat var="wf" value="#{workflowBean.workflows}">
-									<tr class="bg-pale-secondary">
-										<th><h:outputText value="#{wf.id}" /></th>
-										<td><h:outputText value="#{wf.priorite}" /></td>
-										<td><h:outputText value="#{wf.type}" /></td>
+								<tr class="#{wf.priorite eq wFPriorityBean.priorities[0] ? 'bg-pale-danger' : ''}#{wf.priorite eq wFPriorityBean.priorities[1] ? 'bg-pale-brown' : ''}#{wf.priorite eq wFPriorityBean.priorities[2] ? 'bg-pale-secondary' : ''}">
+										<th><a href="updateworkflow.jsf?id=#{wf.id}"><h:outputText value="#{wf.id}"/></a></th>
+										<td><span class="badge #{wf.type eq wFTypeBean.types[0] ? 'badge-success' : 'badge-warning'}">#{wf.type}</span></td>
 										<td><h:outputText value="#{wf.dateCreation}"><f:convertDateTime pattern="dd/MM/yyyy HH:mm"/></h:outputText></td>
 										<td><h:outputText value="#{wf.dateLimite}"><f:convertDateTime pattern="dd/MM/yyyy"/></h:outputText></td>
-										<td><h:outputText value="#{wf.createur.id}" /></td>
-										<td><center><h:form><h:commandButton action="#{workflowBean.supprimerWorkflow(wf)}" value="DEL" class="btn btn-w-md btn-outline btn-danger" /></h:form></center></td>
+										<td><h:outputText value="#{wf.createur.nom} #{wf.createur.prenom}" /></td>
+										<td><center><h:form><h:commandButton action="#{workflowBean.supprimerWorkflow(wf)}" value="Supprimer" class="btn btn-w-md btn-outline btn-danger"/></h:form></center></td>
 									</tr>
 								</ui:repeat>
 							</tbody>

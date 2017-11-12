@@ -65,7 +65,7 @@ public class DataBasePopulator {
 		workflow.setCreateur(directeur1);
 		workflow.setPriorite(WFPriorite.Normale);
 		workflow.setStatus(WFStatus.EnCours);
-		workflow.setType(WFType.Fature);
+		workflow.setType(WFType.Facture);
 
 		//WFS.createWorkFlow(workflow);
 		
