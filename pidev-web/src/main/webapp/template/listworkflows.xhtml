@@ -22,7 +22,7 @@
                     <div class="flexbox flex-justified">
                       <span>Priorité : <span class="badge badge-xl badge-dot bg-pale-danger"></span> Haute <span class="badge badge-xl badge-dot bg-pale-brown"></span> Normale <span class="badge badge-xl badge-dot badge-secondary"></span> Basse</span>
                       <span></span>
-                      <span><h:form><h:commandButton class="btn btn-w-md btn-flat btn-danger" action="#{workflowBean.allWorkflows()}" value="tous" /></h:form></span>
+                      <span><h:form><h:commandButton class="btn btn-w-md btn-flat btn-danger" action="#{workflowBean.allWorkflows()}" value="Reset Filter" /></h:form></span>
                       <!--<span>
                       <label class="switch switch-border switch-info">
                         <span>En Cours </span>
@@ -42,6 +42,7 @@
 								<tr>
 									<th>ID</th>
 									<th>Type</th>
+									<th>Status</th>
 									<th>Date Création</th>
 									<th>Date Limite</th>
 									<th>Createur</th>
@@ -59,6 +60,18 @@
 										<td>
 										<h:form>
 										<h:commandButton action="#{workflowBean.WorkflowsBytype(wf.type)}" class="badge #{wf.type eq wFTypeBean.types[0] ? 'badge-success' : 'badge-warning'}" value="#{wf.type}" />
+										</h:form>
+										</td>
+										<td>
+										<h:form>
+										<h:commandButton 
+										class="btn btn-xs btn-round #{wf.status eq wFStatusBean.status[0] ? 'btn-primary' : ''}
+										#{wf.status eq wFStatusBean.status[1] ? 'btn-info' : ''}
+										#{wf.status eq wFStatusBean.status[2] ? 'btn-success' : ''}
+										#{wf.status eq wFStatusBean.status[3] ? 'btn-danger' : ''}
+										#{wf.status eq wFStatusBean.status[4] ? 'btn-warning' : ''}"
+										action="#{workflowBean.WorkflowsByStatus(wf.status)}"
+										value="#{wf.status}"/>
 										</h:form>
 										</td>
 										<td><h:outputText value="#{wf.dateCreation}"><f:convertDateTime pattern="dd/MM/yyyy HH:mm"/></h:outputText></td>

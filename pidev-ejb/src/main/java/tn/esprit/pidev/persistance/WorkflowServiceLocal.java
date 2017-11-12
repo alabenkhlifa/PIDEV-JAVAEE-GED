@@ -20,4 +20,5 @@ public interface WorkflowServiceLocal  {
 	List<Workflow> findWorkflowsbyCreateur(Boolean archive, int idCreateur);
 	void archiverworkflow(int idWorkflow);
 	void dearchiverworkflow(int idWorkflow);
+	List<Workflow> findWorkflowsbyStatus(Boolean archive, WFStatus status);
 }

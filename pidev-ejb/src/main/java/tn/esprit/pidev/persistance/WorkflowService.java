@@ -86,5 +86,8 @@ public class WorkflowService implements WorkflowServiceLocal {
 	public void dearchiverworkflow(int idWorkflow){
 		em.createQuery("UPDATE Workflow w SET w.archive=false WHERE w.id =:idw").setParameter("idw", idWorkflow).executeUpdate();
 	}
-	
+	@Override
+	public List<Workflow> findWorkflowsbyStatus(Boolean archive,WFStatus status){
+		return em.createQuery("select w from Workflow w where w.status=:stat and w.archive=:arch order by w.id asc", Workflow.class).setParameter("stat", status).setParameter("arch", archive).getResultList();
+	}
 }

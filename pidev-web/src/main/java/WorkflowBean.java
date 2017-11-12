@@ -138,6 +138,14 @@ public class WorkflowBean {
 		workflowsarchives = workflowServiceLocal.findWorkflowsbyType(true,type);
 	}
 	
+	public void WorkflowsByStatus(WFStatus status){
+		workflows = workflowServiceLocal.findWorkflowsbyStatus(false,status);
+	}
+	
+	public void WorkflowsarchivesByStatus(WFStatus status){
+		workflowsarchives = workflowServiceLocal.findWorkflowsbyStatus(true,status);
+	}
+	
 	public void WorkflowsByCreateur(int idc){
 		workflows = workflowServiceLocal.findWorkflowsbyCreateur(false,idc);
 	}
