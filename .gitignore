@@ -3,7 +3,8 @@
 ### Java-Web ###
 ## ignoring target file
 target/
-pidev-ear\target\
+/pidev-ear/target/*
+
 *.DEPLOYED
 
 # End of https://www.gitignore.io/api/jboss,java-web
