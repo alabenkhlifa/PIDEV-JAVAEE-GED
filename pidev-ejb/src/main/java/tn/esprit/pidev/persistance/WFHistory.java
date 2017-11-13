@@ -18,8 +18,13 @@ public class WFHistory implements Serializable {
 	private Document document;
 
 	private Workflow workflow;
+	
+	private Employee employee;
 
 	private String action;
+	
+	private Date date = new Date();
+
 
 	private static final long serialVersionUID = 1L;
 
@@ -27,12 +32,12 @@ public class WFHistory implements Serializable {
 
 	}
 
-	public WFHistory(WFHistoryPK pk, Document document, Workflow workflow) {
+	public WFHistory(WFHistoryPK pk, Document document, Workflow workflow, Employee employee) {
 		this.pk.setDocumentid(document.getId());
 		this.pk.setWorkflowid(workflow.getId());
-		this.pk.setDate(new Date());
 		this.document = document;
 		this.workflow = workflow;
+		this.employee = employee;
 	}
 
 	@EmbeddedId
@@ -48,7 +53,7 @@ public class WFHistory implements Serializable {
 	}
 
 	@ManyToOne
-	@JoinColumn(name = "documentid", insertable = false, updatable = false)
+	@JoinColumn(name = "document_fk")
 	public Document getDocument() {
 		return document;
 	}
@@ -58,13 +63,22 @@ public class WFHistory implements Serializable {
 	}
 
 	@ManyToOne
-	@JoinColumn(name = "workflowid", insertable = false, updatable = false)
+	@JoinColumn(name = "workflow_fk")
 	public Workflow getWorkflow() {
 		return workflow;
 	}
 
 	public void setWorkflow(Workflow workflow) {
 		this.workflow = workflow;
+	}
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	public Date getDate() {
+		return this.date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	@Override
@@ -116,6 +130,16 @@ public class WFHistory implements Serializable {
 
 	public void setAction(String action) {
 		this.action = action;
+	}
+	
+	@ManyToOne
+	@JoinColumn(name = "employee_fk")
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 
 }

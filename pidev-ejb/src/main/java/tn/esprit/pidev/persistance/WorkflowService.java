@@ -25,8 +25,7 @@ public class WorkflowService implements WorkflowServiceLocal {
 
 	@Override
 	public void saveWorkFlow(Workflow W) {
-		Workflow existing = em.find(Workflow.class, W.getId());
-		em.merge(existing.merge(W));
+		em.merge(W);
 	}
 
 	@Override

@@ -10,29 +10,41 @@ import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import tn.esprit.pidev.persistance.*;
 
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class WorkflowBean {
 
 	@EJB
 	private WorkflowServiceLocal workflowServiceLocal;
 	@EJB
 	private DirecteurServiceLocal dSL;
+	@EJB
+	private EmployeeServiceLocal ESL;
 
 	List<Workflow> workflows;
 	List<Workflow> workflowsarchives;
+	List<Integer> employeesid;
 	private int DirecteurID;
 	Date form_datelimite;
 	Workflow workflow = new Workflow();
+	Workflow workflowclone = new Workflow();
 	
+	public List<Integer> getEmployeesid() {
+		return employeesid;
+	}
+
+	public void setEmployeesid(List<Integer> employeesid) {
+		this.employeesid = employeesid;
+	}
+
 	public List<Workflow> getWorkflowsarchives() {
 		return workflowsarchives;
 	}
@@ -79,8 +91,13 @@ public class WorkflowBean {
 		int idworkflow = Integer.parseInt(req.getParameter("id"));
 		if(!workflowServiceLocal.existantWorkflow(idworkflow))
 			return "404.html";
+		else{
 		workflow = workflowServiceLocal.findWorkFlowById(idworkflow);
+			if(workflow.getArchive())
+				return "404.html";
+		workflowclone = workflow;
 		return "";
+		}
 	}
 	
 	//Success
@@ -88,14 +105,16 @@ public class WorkflowBean {
 		Directeur d = dSL.findDirecteurById(DirecteurID);
 		workflow.setCreateur(d);
 		workflow.setStatus(WFStatus.EnAttente);
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		String format = formatter.format(form_datelimite);
-		System.out.println(format);
-		System.out.println(form_datelimite);
+		if(!employeesid.isEmpty())
+			workflow.setParticipants(ESL.getlistemployeebyids(employeesid));
+//		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+//		String format = formatter.format(form_datelimite);
+//		System.out.println(format);
+//		System.out.println(form_datelimite);
 		workflow.setDateLimite(form_datelimite);
 		workflowServiceLocal.createWorkFlowFromDetach(workflow);
 		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "WorkFlow Ajouté Avec Succés",
-				"WorkFlow ID : " + workflow.getId());
+				null);
 		FacesContext.getCurrentInstance().addMessage(null, message);
 	}
 
@@ -109,7 +128,8 @@ public class WorkflowBean {
 		updateWorkflow();
 	}
 	
-	public void UpWorkflow() throws IOException {
+	public void UpWorkflow() {
+//		workflowclone = 
 		workflowServiceLocal.saveWorkFlow(workflow);
 		//refreshPage();
 	}

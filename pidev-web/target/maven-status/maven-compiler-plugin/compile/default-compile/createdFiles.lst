@@ -1,6 +1,7 @@
+workflowsfilter.class
 WFPriorityBean.class
 WFTypeBean.class
 wFStatusBean.class
 WorkflowBean.class
+EmployeeBean.class
 DirecteurBean.class
-workflowsfilter.class

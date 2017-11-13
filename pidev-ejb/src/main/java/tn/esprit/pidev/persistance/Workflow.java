@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class Workflow implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "WF_ID")
 	private Integer id;
 	

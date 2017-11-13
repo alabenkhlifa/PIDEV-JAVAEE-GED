@@ -45,30 +45,33 @@ public class DataBasePopulator {
 //		System.out.println(message.getSid());
 		 **/
 
-		Directeur directeur1 = new Directeur();
-		directeur1.setNom("Directeur 1");
-		directeur1.setPrenom("Directeur 1");
-
-		DS.createDirecteur(directeur1);
-
-		Employee employee1 = new Employee();
-		employee1.setNom("Employee 1");
-		employee1.setPrenom("Employee 1");
-
-		List<Employee> participants = new ArrayList<>();
-		participants.add(employee1);
-		ES.createEmployee(employee1);
-
-		Workflow workflow = new Workflow();
-		workflow.setArchive(false);
-		workflow.setParticipants(participants);
-		workflow.setCreateur(directeur1);
-		workflow.setPriorite(WFPriorite.Normale);
-		workflow.setStatus(WFStatus.EnCours);
-		workflow.setType(WFType.Facture);
-
-		//WFS.createWorkFlow(workflow);
-		
+//		Directeur directeur1 = new Directeur();
+//		directeur1.setNom("Directeur 1");
+//		directeur1.setPrenom("Directeur 1");
+////
+//		DS.createDirecteur(directeur1);
+////
+//		Employee employee1 = new Employee();
+//		employee1.setNom("Employee 1");
+//		employee1.setPrenom("Employee 1");
+//		ES.createEmployee(employee1);
+//		
+//		List<Employee> participants = new ArrayList<Employee>() ;
+//		participants.add(employee1);
+////		participants = ES.getallEmployees();
+//		Workflow workflow = new Workflow();
+//		workflow.setArchive(false);
+//		workflow.setParticipants(participants);
+//		workflow.setCreateur(directeur1);
+//		workflow.setPriorite(WFPriorite.Normale);
+//		workflow.setStatus(WFStatus.EnCours);
+//		workflow.setType(WFType.Facture);
+//
+//		WFS.createWorkFlow(workflow);
+		Workflow w = new Workflow();
+		w.setId(2);
+		w.setArchive(true);
+		WFS.saveWorkFlow(w);
 		// System.out.println(workflow);
 	}
 
