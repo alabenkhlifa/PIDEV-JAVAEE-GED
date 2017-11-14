@@ -27,8 +27,14 @@ public class Employee implements Serializable {
 	@Column(name="EMP_Prenom")
 	private String prenom;
 	
+	@Column(name="EMP_Dep")
+	private DepartementEnum departement;
+	
 	@ManyToMany(mappedBy="participants")
 	private List<Workflow> workflows;
+	
+	@OneToMany(mappedBy = "employee")
+	private List<WFHistory> history;
 
 	
 	private static final long serialVersionUID = 1L;
@@ -36,6 +42,38 @@ public class Employee implements Serializable {
 	public Employee() {
 		
 	}   
+	
+	
+	public DepartementEnum getDepartement() {
+		return departement;
+	}
+
+
+	public void setDepartement(DepartementEnum departement) {
+		this.departement = departement;
+	}
+
+
+	public List<Workflow> getWorkflows() {
+		return workflows;
+	}
+
+
+	public void setWorkflows(List<Workflow> workflows) {
+		this.workflows = workflows;
+	}
+
+
+	public List<WFHistory> getHistory() {
+		return history;
+	}
+
+
+	public void setHistory(List<WFHistory> history) {
+		this.history = history;
+	}
+
+
 	public Integer getId() {
 		return this.id;
 	}

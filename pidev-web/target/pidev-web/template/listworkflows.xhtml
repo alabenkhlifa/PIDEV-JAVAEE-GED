@@ -72,6 +72,7 @@
 										#{wf.status eq wFStatusBean.status[4] ? 'btn-warning' : ''}"
 										action="#{workflowBean.WorkflowsByStatus(wf.status)}"
 										value="#{wf.status}"/>
+										
 										</h:form>
 										</td>
 										<td><h:outputText value="#{wf.dateCreation}"><f:convertDateTime pattern="dd/MM/yyyy HH:mm"/></h:outputText></td>

@@ -11,10 +11,12 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIComponent;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
 
 import tn.esprit.pidev.persistance.*;
 
@@ -28,15 +30,39 @@ public class WorkflowBean {
 	private DirecteurServiceLocal dSL;
 	@EJB
 	private EmployeeServiceLocal ESL;
+	@EJB
+	private DocumentServiceLocal DSL;
+	@EJB
+	private HistoryServiceLocal HSL;
 
 	List<Workflow> workflows;
 	List<Workflow> workflowsarchives;
 	List<Integer> employeesid;
+	List<Integer> documentsid;
+	List<Integer> documentsupdatedid;
 	private int DirecteurID;
 	Date form_datelimite;
 	Workflow workflow = new Workflow();
-	Workflow workflowclone = new Workflow();
+	Workflow workflowclone;
 	
+	
+	
+	public List<Integer> getDocumentsupdatedid() {
+		return documentsupdatedid;
+	}
+
+	public void setDocumentsupdatedid(List<Integer> documentsupdatedid) {
+		this.documentsupdatedid = documentsupdatedid;
+	}
+
+	public List<Integer> getDocumentsid() {
+		return documentsid;
+	}
+
+	public void setDocumentsid(List<Integer> documentsid) {
+		this.documentsid = documentsid;
+	}
+
 	public List<Integer> getEmployeesid() {
 		return employeesid;
 	}
@@ -93,6 +119,9 @@ public class WorkflowBean {
 			return "404.html";
 		else{
 		workflow = workflowServiceLocal.findWorkFlowById(idworkflow);
+		
+		//Replacé par FetchType.EAGER
+//		workflow.setDocuments(DSL.getdocumentsbyworkflow(idworkflow));
 			if(workflow.getArchive())
 				return "404.html";
 		workflowclone = workflow;
@@ -107,6 +136,8 @@ public class WorkflowBean {
 		workflow.setStatus(WFStatus.EnAttente);
 		if(!employeesid.isEmpty())
 			workflow.setParticipants(ESL.getlistemployeebyids(employeesid));
+		if(!documentsid.isEmpty())
+			workflow.setDocuments(DSL.getlistdocumentbyids(documentsid));
 //		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 //		String format = formatter.format(form_datelimite);
 //		System.out.println(format);
@@ -129,7 +160,14 @@ public class WorkflowBean {
 	}
 	
 	public void UpWorkflow() {
-//		workflowclone = 
+		WFHistory history;
+		if(!workflowclone.equals(workflow)){
+			history = new WFHistory();
+			history.setWorkflow(workflow);
+			if(!workflowclone.getStatus().equals(workflow.getStatus()))
+				history.setAction("Status changé du "+workflowclone.getStatus()+" à "+workflow.getStatus());
+			HSL.createHistory(history);
+		}
 		workflowServiceLocal.saveWorkFlow(workflow);
 		//refreshPage();
 	}
@@ -195,5 +233,24 @@ public class WorkflowBean {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	
+	
+	
+	
+	public void validateDateLimite(FacesContext context, UIComponent comp,
+			Object value) {
+//		String mno = (String) value;
+//		if (mno.length() < 4) {
+//			((UIInput) comp).setValid(false);
+//
+//			FacesMessage message = new FacesMessage(
+//					"Minimum length of model number is 4");
+//			context.addMessage(comp.getClientId(context), message);
+//
+//		}
+		System.out.println(value);
+
 	}
 }

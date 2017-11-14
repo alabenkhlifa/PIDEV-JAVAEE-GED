@@ -1,4 +1,6 @@
+DocumentBean.class
 workflowsfilter.class
+DateValidator.class
 WFPriorityBean.class
 WFTypeBean.class
 wFStatusBean.class

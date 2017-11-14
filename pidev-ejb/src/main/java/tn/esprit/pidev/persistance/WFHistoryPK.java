@@ -8,7 +8,7 @@ import javax.persistence.*;
  * Entity implementation class for Entity: WFHistoryPK
  *
  */
-@Embeddable
+//@Embeddable
 public class WFHistoryPK implements Serializable {
 
 	private Integer workflowid;

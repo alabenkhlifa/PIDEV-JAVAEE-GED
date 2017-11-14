@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class Workflow implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "WF_ID")
 	private Integer id;
 	
@@ -51,6 +51,10 @@ public class Workflow implements Serializable {
 	@ManyToMany
 	@JoinTable(name = "WF_EMP", joinColumns = @JoinColumn(name = "WF_ID", referencedColumnName = "WF_ID") , inverseJoinColumns = @JoinColumn(name = "EMP_ID", referencedColumnName = "EMP_ID") )
 	private List<Employee> participants;
+	
+	@ManyToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@JoinTable(name = "WF_DOC", joinColumns = @JoinColumn(name = "WF_ID", referencedColumnName = "WF_ID") , inverseJoinColumns = @JoinColumn(name = "id", referencedColumnName = "id") )
+	private List<Document> documents;
 
 	@OneToMany(mappedBy = "workflow")
 	private List<WFHistory> history;
@@ -67,7 +71,15 @@ public class Workflow implements Serializable {
 		return dateLimite;
 	}
 
+	
 
+	public List<Document> getDocuments() {
+		return documents;
+	}
+
+	public void setDocuments(List<Document> documents) {
+		this.documents = documents;
+	}
 
 	public void setDateLimite(Date dateLimite) {
 		this.dateLimite = dateLimite;
@@ -163,12 +175,22 @@ public class Workflow implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + (archive ? 1231 : 1237);
 		result = prime * result + ((createur == null) ? 0 : createur.hashCode());
 		result = prime * result + ((dateCreation == null) ? 0 : dateCreation.hashCode());
+		result = prime * result + ((dateLimite == null) ? 0 : dateLimite.hashCode());
+		result = prime * result + ((documents == null) ? 0 : documents.hashCode());
+		result = prime * result + ((history == null) ? 0 : history.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((participants == null) ? 0 : participants.hashCode());
+		result = prime * result + ((priorite == null) ? 0 : priorite.hashCode());
+		result = prime * result + ((status == null) ? 0 : status.hashCode());
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		return result;
 	}
 
+	
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -178,6 +200,8 @@ public class Workflow implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Workflow other = (Workflow) obj;
+		if (archive != other.archive)
+			return false;
 		if (createur == null) {
 			if (other.createur != null)
 				return false;
@@ -188,14 +212,40 @@ public class Workflow implements Serializable {
 				return false;
 		} else if (!dateCreation.equals(other.dateCreation))
 			return false;
+		if (dateLimite == null) {
+			if (other.dateLimite != null)
+				return false;
+		} else if (!dateLimite.equals(other.dateLimite))
+			return false;
+		if (documents == null) {
+			if (other.documents != null)
+				return false;
+		} else if (!documents.equals(other.documents))
+			return false;
+		if (history == null) {
+			if (other.history != null)
+				return false;
+		} else if (!history.equals(other.history))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (participants == null) {
+			if (other.participants != null)
+				return false;
+		} else if (!participants.equals(other.participants))
+			return false;
+		if (priorite != other.priorite)
+			return false;
+		if (status != other.status)
+			return false;
+		if (type != other.type)
+			return false;
 		return true;
 	}
-	
+
 	protected Workflow merge(Workflow other) {
 	    setArchive(other.getArchive());
 	    setCreateur(other.getCreateur());

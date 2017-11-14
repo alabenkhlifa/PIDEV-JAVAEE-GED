@@ -22,8 +22,24 @@ public class Directeur {
 	private String nom;
 	@Column(name="DIR_Prenom")
 	private String prenom;
+	@Column(name="DIR_Dep")
+	private DepartementEnum departement;
 	@OneToMany(mappedBy = "createur")
 	private List<Workflow> workflows ;
+	
+	
+	public DepartementEnum getDepartement() {
+		return departement;
+	}
+	public void setDepartement(DepartementEnum departement) {
+		this.departement = departement;
+	}
+	public List<Workflow> getWorkflows() {
+		return workflows;
+	}
+	public void setWorkflows(List<Workflow> workflows) {
+		this.workflows = workflows;
+	}
 	public int getId() {
 		return id;
 	}

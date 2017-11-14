@@ -19,20 +19,20 @@
 								<tr>
 									<th>ID</th>
 									<th>Priorité</th>
-									<th>Type</th>
 									<th>Status</th>
 									<th>Date Création</th>
 									<th>Date Limite</th>
-									<th>Createur ID</th>
+									<th>Createur</th>
 									<th>Appliquer</th>
 								</tr>
 							</thead>
 							<tbody>
 								<h:form>
 									<tr class="bg-pale-secondary">
-										<td><h:inputText class="form-control" value="#{workflowBean.workflow.id}" disabled="true" /></td>
+										<td>
+										<h:inputText class="form-control" value="#{workflowBean.workflow.id}" disabled="true" />
+										</td>
 										<td><h:inputText class="form-control" value="#{workflowBean.workflow.priorite}" disabled="true" /></td>
-										<td><h:inputText class="form-control" value="#{workflowBean.workflow.type}" disabled="true" /></td>
 										<td><h:selectOneMenu value="#{workflowBean.workflow.status}"
 												class="form-control">
 												<f:selectItems value="#{wFStatusBean.status}" />
