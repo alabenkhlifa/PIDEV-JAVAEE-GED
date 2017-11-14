@@ -14,7 +14,11 @@ public class DateValidator implements Validator {
 	@Override
 	public void validate(FacesContext arg0, UIComponent arg1, Object arg2) throws ValidatorException {
 		// TODO Auto-generated method stub
-		
+		 if(null==arg2){
+			 FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_FATAL,"Veuillez mettre une date limite","");
+	            throw new ValidatorException(msg);
+		 }
+			 
 		 Date datelimite = (Date)arg2;
 		 Instant maintenant = Instant.now(); //date d'aujourdhui
 		 Instant avant1jours = maintenant.minus(Duration.ofDays(1));

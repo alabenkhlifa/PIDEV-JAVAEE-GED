@@ -82,7 +82,7 @@ public class DataBasePopulator {
 		DSL.createDocument(document2);
 		
 		Document document3 = new Document();
-		document3.setNom("JGP");
+		document3.setNom("JPG");
 		document3.setTaille(150);
 		
 		DSL.createDocument(document3);

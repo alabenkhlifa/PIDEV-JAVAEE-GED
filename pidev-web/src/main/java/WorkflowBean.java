@@ -164,7 +164,7 @@ public class WorkflowBean {
 		updateWorkflow();
 	}
 	
-	public void UpWorkflow() {
+	public String UpWorkflow() {
 		WFHistory history;
 		if(!workflowclone.equals(workflow)){
 			history = new WFHistory();
@@ -174,6 +174,7 @@ public class WorkflowBean {
 			HSL.createHistory(history);
 		}
 		workflowServiceLocal.saveWorkFlow(workflow);
+		return "listworkflows.jsf";
 		//refreshPage();
 	}
 
@@ -222,7 +223,7 @@ public class WorkflowBean {
 	}
 	
 	public void allarchivedWorkflows(){
-		workflows = workflowServiceLocal.findAllWorkFlows(true);
+		workflowsarchives = workflowServiceLocal.findAllWorkFlows(true);
 	}
 	
 	public void archiverWorkflow(int idWork){

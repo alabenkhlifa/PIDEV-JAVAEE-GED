@@ -21,7 +21,7 @@ public class Document implements Serializable {
 	private Integer id;
 	private String nom;
 	private double taille;
-	@ManyToMany(mappedBy="documents",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@ManyToMany(mappedBy="documents",fetch=FetchType.EAGER)
 	private List<Workflow> workflows;
 	@OneToMany(mappedBy = "document")
 	private List<WFHistory> history ;
