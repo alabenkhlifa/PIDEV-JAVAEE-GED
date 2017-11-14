@@ -1,8 +1,10 @@
-package tn.esprit.pidev.persistance;
+package tn.esprit.pidev.services;
 
 import java.util.List;
 
 import javax.ejb.Local;
+
+import tn.esprit.pidev.persistance.Directeur;
 
 @Local
 public interface DirecteurServiceLocal {

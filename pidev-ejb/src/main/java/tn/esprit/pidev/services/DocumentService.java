@@ -1,4 +1,4 @@
-package tn.esprit.pidev.persistance;
+package tn.esprit.pidev.services;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,6 +10,8 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+import tn.esprit.pidev.persistance.Document;
 
 @Stateless
 @LocalBean

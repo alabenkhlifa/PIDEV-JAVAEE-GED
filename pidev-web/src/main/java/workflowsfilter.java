@@ -7,7 +7,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import tn.esprit.pidev.persistance.Workflow;
-import tn.esprit.pidev.persistance.WorkflowServiceLocal;
+import tn.esprit.pidev.services.WorkflowServiceLocal;
 
 @ManagedBean(name = "wfFilterView")
 @ViewScoped

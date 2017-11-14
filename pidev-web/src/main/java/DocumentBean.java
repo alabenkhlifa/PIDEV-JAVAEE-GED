@@ -6,7 +6,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import tn.esprit.pidev.persistance.Document;
-import tn.esprit.pidev.persistance.DocumentServiceLocal;
+import tn.esprit.pidev.services.DocumentServiceLocal;
 
 @ManagedBean
 @RequestScoped

@@ -1,10 +1,18 @@
-package tn.esprit.pidev.persistance;
+package tn.esprit.pidev.Utils;
 
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
+
+import tn.esprit.pidev.persistance.Directeur;
+import tn.esprit.pidev.persistance.Document;
+import tn.esprit.pidev.persistance.Employee;
+import tn.esprit.pidev.services.DirecteurServiceLocal;
+import tn.esprit.pidev.services.DocumentServiceLocal;
+import tn.esprit.pidev.services.EmployeeServiceLocal;
+import tn.esprit.pidev.services.WorkflowServiceLocal;
 
 
 

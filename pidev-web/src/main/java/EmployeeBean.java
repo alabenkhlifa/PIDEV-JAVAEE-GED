@@ -7,7 +7,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import tn.esprit.pidev.persistance.Employee;
-import tn.esprit.pidev.persistance.EmployeeServiceLocal;
+import tn.esprit.pidev.services.EmployeeServiceLocal;
 
 @ManagedBean
 @RequestScoped

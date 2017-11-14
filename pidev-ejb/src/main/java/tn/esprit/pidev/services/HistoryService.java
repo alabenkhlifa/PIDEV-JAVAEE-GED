@@ -1,4 +1,4 @@
-package tn.esprit.pidev.persistance;
+package tn.esprit.pidev.services;
 
 import java.util.List;
 
@@ -6,6 +6,8 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+import tn.esprit.pidev.persistance.WFHistory;
 
 @Stateless
 @LocalBean

@@ -19,6 +19,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 
 import tn.esprit.pidev.persistance.*;
+import tn.esprit.pidev.services.DirecteurServiceLocal;
+import tn.esprit.pidev.services.DocumentServiceLocal;
+import tn.esprit.pidev.services.EmployeeServiceLocal;
+import tn.esprit.pidev.services.HistoryServiceLocal;
+import tn.esprit.pidev.services.WorkflowServiceLocal;
 
 @ManagedBean
 @ViewScoped

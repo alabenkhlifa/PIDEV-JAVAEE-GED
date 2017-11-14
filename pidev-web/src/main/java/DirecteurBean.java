@@ -7,7 +7,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import tn.esprit.pidev.persistance.Directeur;
-import tn.esprit.pidev.persistance.DirecteurServiceLocal;
+import tn.esprit.pidev.services.DirecteurServiceLocal;
 
 @ManagedBean
 @SessionScoped
