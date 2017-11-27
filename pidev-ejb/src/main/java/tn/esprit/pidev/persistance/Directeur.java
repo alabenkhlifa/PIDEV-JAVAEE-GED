@@ -9,14 +9,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "Directeur")
+@XmlRootElement
 public class Directeur {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="DIR_ID")
+	@XmlAttribute(name="DirecteurID")
 	private int id ;
 	@Column(name="DIR_Nom")
 	private String nom;
@@ -25,6 +31,7 @@ public class Directeur {
 	@Column(name="DIR_Dep")
 	private DepartementEnum departement;
 	@OneToMany(mappedBy = "createur")
+	@JsonIgnore
 	private List<Workflow> workflows ;
 	
 	

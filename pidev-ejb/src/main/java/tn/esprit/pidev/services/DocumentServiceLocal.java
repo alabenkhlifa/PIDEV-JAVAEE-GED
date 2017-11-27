@@ -18,4 +18,6 @@ public interface DocumentServiceLocal {
 
 	List<Document> getdocumentsbyworkflow(int workflowid);
 
+	Object testEM();
+
 }

@@ -1,21 +1,33 @@
 package tn.esprit.pidev.services;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+import javax.jws.WebMethod;
+import javax.jws.WebService;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.core.Application;
 
+import tn.esprit.pidev.persistance.WFPriorite;
 import tn.esprit.pidev.persistance.WFStatus;
 import tn.esprit.pidev.persistance.WFType;
 import tn.esprit.pidev.persistance.Workflow;
 
 @Stateless
-@LocalBean
-public class WorkflowService implements WorkflowServiceLocal {
+//@LocalBean
+//@WebService(serviceName="WorkflowService")
+//
+//@Path("/")
+public class WorkflowService extends Application implements WorkflowServiceLocal,WorkflowServiceRemote {
 
-	@PersistenceContext
+	@PersistenceContext//(unitName="WorkflowService", type = PersistenceContextType.EXTENDED)
 	private EntityManager em;
 
 	public WorkflowService() {
@@ -32,8 +44,11 @@ public class WorkflowService implements WorkflowServiceLocal {
 		em.merge(W);
 	}
 
+	
 	@Override
-	public List<Workflow> findAllWorkFlows(Boolean archive) {
+//	@WebMethod(operationName="getWorkflows")
+//	@GET
+	public List<Workflow> findAllWorkFlows(/*@PathParam("archive")*/Boolean archive) {
 		return em.createQuery("select w from Workflow w where w.archive=:arch order by w.id asc", Workflow.class).setParameter("arch", archive).getResultList();
 	}
 
@@ -92,5 +107,11 @@ public class WorkflowService implements WorkflowServiceLocal {
 	@Override
 	public List<Workflow> findWorkflowsbyStatus(Boolean archive,WFStatus status){
 		return em.createQuery("select w from Workflow w where w.status=:stat and w.archive=:arch order by w.id asc", Workflow.class).setParameter("stat", status).setParameter("arch", archive).getResultList();
+	}
+
+	@Override
+	public void createWorkflowfromScratch(Date avantLe, Boolean archived, WFPriorite priorite) {
+		// TODO Complete this methode
+		
 	}
 }

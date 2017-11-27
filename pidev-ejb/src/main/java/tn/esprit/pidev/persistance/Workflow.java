@@ -6,57 +6,78 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * Entity implementation class for Entity: Workflow
  *
  */
 @Entity
+@XmlRootElement
 public class Workflow implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "WF_ID")
+	@XmlAttribute(name="workflowID")
 	private Integer id;
 	
 	@Column(name = "WF_Date_Creation")
 	@Basic(optional = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	//@CreationTimestamp
+	@XmlElement
 	private Date dateCreation;
 	
 	@Column(name = "WF_Avant_Le",columnDefinition="DATE NULL")
+	@XmlElement
 	private Date dateLimite;
 
 	@Column(name = "WF_est_Archive")
+	@XmlElement
 	private boolean archive;
 
 	@Column(name = "WF_Status")
 	@Enumerated(EnumType.STRING)
+	@XmlElement
 	private WFStatus status;
 
 	@Column(name = "WF_priorite")
 	@Enumerated(EnumType.STRING)
 	// private WFPriorite prio;
+	@XmlElement
 	private WFPriorite priorite;
 
 	@Column(name = "WF_Type")
 	@Enumerated(EnumType.STRING)
+	@XmlElement
 	private WFType type;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CREATEUR_ID")
+//	@JsonIgnore
+	@XmlElement
 	private Directeur createur;
 
 	@ManyToMany
 	@JoinTable(name = "WF_EMP", joinColumns = @JoinColumn(name = "WF_ID", referencedColumnName = "WF_ID") , inverseJoinColumns = @JoinColumn(name = "EMP_ID", referencedColumnName = "EMP_ID") )
+	@JsonIgnore
 	private List<Employee> participants;
 	
 	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name = "WF_DOC", joinColumns = @JoinColumn(name = "WF_ID", referencedColumnName = "WF_ID") , inverseJoinColumns = @JoinColumn(name = "id", referencedColumnName = "id") )
+//	@JsonIgnore
+	@XmlElement
 	private List<Document> documents;
 
 	@OneToMany(mappedBy = "workflow")
+	@JsonIgnore
 	private List<WFHistory> history;
 
 	private static final long serialVersionUID = 1L;
@@ -99,6 +120,8 @@ public class Workflow implements Serializable {
 		return this.id;
 	}
 
+//	@XmlAttribute(name = "idWorkflow")
+	@XmlTransient
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -108,6 +131,7 @@ public class Workflow implements Serializable {
 		return this.dateCreation;
 	}
 
+	@XmlTransient
 	public void setDateCreation(Date dateCreation) {
 		this.dateCreation = dateCreation;
 	}
@@ -124,6 +148,7 @@ public class Workflow implements Serializable {
 		return status;
 	}
 
+	@XmlTransient
 	public void setStatus(WFStatus status) {
 		this.status = status;
 	}

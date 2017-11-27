@@ -1,4 +1,5 @@
 DocumentBean.class
+resources\WorkflowResource.class
 workflowsfilter.class
 DateValidator.class
 WFPriorityBean.class
@@ -7,3 +8,4 @@ wFStatusBean.class
 WorkflowBean.class
 EmployeeBean.class
 DirecteurBean.class
+restActivator\RestActivator.class

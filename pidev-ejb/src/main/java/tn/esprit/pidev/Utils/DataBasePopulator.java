@@ -16,8 +16,8 @@ import tn.esprit.pidev.services.WorkflowServiceLocal;
 
 
 
-@Singleton
-@Startup
+//@Singleton
+//@Startup
 public class DataBasePopulator {
 
 	@EJB
@@ -36,7 +36,7 @@ public class DataBasePopulator {
 	public DataBasePopulator() {
 	}
 
-	@PostConstruct
+//	@PostConstruct
 	public void createData() {
 
 		Directeur directeur1 = new Directeur();

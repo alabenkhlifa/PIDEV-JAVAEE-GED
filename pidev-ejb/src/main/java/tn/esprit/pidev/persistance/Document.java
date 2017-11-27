@@ -6,24 +6,35 @@ import java.lang.String;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * Entity implementation class for Entity: Document
  *
  */
 @Entity
-
+@XmlRootElement
 public class Document implements Serializable {
 
 	   
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@XmlAttribute(name="DocumentID")
 	private Integer id;
+	@XmlElement
 	private String nom;
+	@XmlElement
 	private double taille;
 	@ManyToMany(mappedBy="documents",fetch=FetchType.EAGER)
+	@JsonIgnore
 	private List<Workflow> workflows;
 	@OneToMany(mappedBy = "document")
+	@JsonIgnore
 	private List<WFHistory> history ;
 	private static final long serialVersionUID = 1L;
 

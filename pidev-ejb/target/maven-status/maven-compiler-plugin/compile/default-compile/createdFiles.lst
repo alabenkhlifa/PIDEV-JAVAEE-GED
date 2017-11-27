@@ -7,6 +7,7 @@ tn\esprit\pidev\services\EmployeeService.class
 tn\esprit\pidev\services\WorkflowServiceLocal.class
 tn\esprit\pidev\persistance\Employee.class
 tn\esprit\pidev\services\DirecteurService.class
+tn\esprit\pidev\services\DocumentServiceRemote.class
 tn\esprit\pidev\persistance\WFType.class
 tn\esprit\pidev\services\HistoryService.class
 tn\esprit\pidev\persistance\WFStatus.class

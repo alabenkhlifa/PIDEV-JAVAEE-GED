@@ -6,19 +6,23 @@ import java.lang.String;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  * Entity implementation class for Entity: Employee
  *
  */
 @Entity
-
+@XmlRootElement
 public class Employee implements Serializable {
 
 	   
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="EMP_ID")
+	@XmlAttribute(name="EmployeeID")
 	private Integer id;
 	
 	@Column(name="EMP_Nom")

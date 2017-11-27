@@ -10,12 +10,13 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import tn.esprit.pidev.persistance.Document;
 
 @Stateless
-@LocalBean
-public class DocumentService implements DocumentServiceLocal {
+//@LocalBean
+public class DocumentService implements DocumentServiceLocal,DocumentServiceRemote {
 
 	@PersistenceContext
 	private EntityManager em;
@@ -31,6 +32,15 @@ public class DocumentService implements DocumentServiceLocal {
 		// TODO Auto-generated method stub
 		em.persist(d);
 	}
+	@Override
+	public Document testEM(){
+		Document d = new Document();
+		d.setId(10);
+		d.setNom("test du entity manager");
+		d.setTaille(100);
+		return d;
+	}
+	
 	@Override
 	public List<Document> getallDocuments(){
 		return em.createQuery("select d from Document d", Document.class).getResultList();
