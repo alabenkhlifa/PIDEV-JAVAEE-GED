@@ -52,7 +52,7 @@ public class WorkflowResource {
 
 	@Path("{id}")
 	@GET
-	@Produces(MediaType.APPLICATION_JSON)
+	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
 	public Response getWorkflowById(@PathParam("id") int id) {
 		Workflow w = wSL.findWorkFlowById(id);
 		if (null != w)
@@ -78,6 +78,7 @@ public class WorkflowResource {
 		return Response.status(Status.OK).entity(LE).build();
 	}
 	
+	@Path("document")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAlldocuments() {
@@ -116,7 +117,6 @@ public class WorkflowResource {
 	}
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
 	public Response updateWorkflow(Workflow newWorkflow){
 		if(wSL.existantWorkflow(newWorkflow.getId())){
 			wSL.saveWorkFlow(newWorkflow);

@@ -65,9 +65,10 @@ public class Workflow implements Serializable {
 	@XmlElement
 	private Directeur createur;
 
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name = "WF_EMP", joinColumns = @JoinColumn(name = "WF_ID", referencedColumnName = "WF_ID") , inverseJoinColumns = @JoinColumn(name = "EMP_ID", referencedColumnName = "EMP_ID") )
-	@JsonIgnore
+//	@JsonIgnore
+	@XmlElement
 	private List<Employee> participants;
 	
 	@ManyToMany(fetch=FetchType.EAGER)

@@ -7,8 +7,11 @@ import java.util.List;
 
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * Entity implementation class for Entity: Employee
@@ -26,18 +29,23 @@ public class Employee implements Serializable {
 	private Integer id;
 	
 	@Column(name="EMP_Nom")
+	@XmlElement
 	private String nom;
 	
 	@Column(name="EMP_Prenom")
+	@XmlElement
 	private String prenom;
 	
 	@Column(name="EMP_Dep")
+	@JsonIgnore
 	private DepartementEnum departement;
 	
 	@ManyToMany(mappedBy="participants")
+	@JsonIgnore
 	private List<Workflow> workflows;
 	
 	@OneToMany(mappedBy = "employee")
+	@JsonIgnore
 	private List<WFHistory> history;
 
 	
