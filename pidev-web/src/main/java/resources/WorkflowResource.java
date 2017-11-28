@@ -52,7 +52,7 @@ public class WorkflowResource {
 
 	@Path("{id}")
 	@GET
-	@Produces({MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+	@Produces({MediaType.APPLICATION_JSON/*,MediaType.APPLICATION_XML*/})
 	public Response getWorkflowById(@PathParam("id") int id) {
 		Workflow w = wSL.findWorkFlowById(id);
 		if (null != w)

@@ -61,19 +61,16 @@ public class Workflow implements Serializable {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CREATEUR_ID")
-//	@JsonIgnore
 	@XmlElement
 	private Directeur createur;
 
 	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name = "WF_EMP", joinColumns = @JoinColumn(name = "WF_ID", referencedColumnName = "WF_ID") , inverseJoinColumns = @JoinColumn(name = "EMP_ID", referencedColumnName = "EMP_ID") )
-//	@JsonIgnore
 	@XmlElement
 	private List<Employee> participants;
 	
 	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name = "WF_DOC", joinColumns = @JoinColumn(name = "WF_ID", referencedColumnName = "WF_ID") , inverseJoinColumns = @JoinColumn(name = "id", referencedColumnName = "id") )
-//	@JsonIgnore
 	@XmlElement
 	private List<Document> documents;
 
@@ -98,11 +95,9 @@ public class Workflow implements Serializable {
 	public List<Document> getDocuments() {
 		return documents;
 	}
-
 	public void setDocuments(List<Document> documents) {
 		this.documents = documents;
 	}
-
 	public void setDateLimite(Date dateLimite) {
 		this.dateLimite = dateLimite;
 	}
@@ -140,7 +135,6 @@ public class Workflow implements Serializable {
 	public boolean getArchive() {
 		return this.archive;
 	}
-
 	public void setArchive(boolean archive) {
 		this.archive = archive;
 	}
@@ -157,7 +151,6 @@ public class Workflow implements Serializable {
 	public WFPriorite getPriorite() {
 		return priorite;
 	}
-
 	public void setPriorite(WFPriorite priorite) {
 		this.priorite = priorite;
 	}
@@ -170,7 +163,6 @@ public class Workflow implements Serializable {
 	public WFType getType() {
 		return type;
 	}
-
 	public void setType(WFType type) {
 		this.type = type;
 	}
@@ -178,7 +170,6 @@ public class Workflow implements Serializable {
 	public Directeur getCreateur() {
 		return createur;
 	}
-
 	public void setCreateur(Directeur createur) {
 		this.createur = createur;
 	}
@@ -186,7 +177,6 @@ public class Workflow implements Serializable {
 	public List<Employee> getParticipants() {
 		return participants;
 	}
-
 	public void setParticipants(List<Employee> participants) {
 		this.participants = participants;
 	}

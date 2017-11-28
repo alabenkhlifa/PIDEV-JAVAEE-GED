@@ -53,21 +53,20 @@ public class Document implements Serializable {
 	public Integer getId() {
 		return this.id;
 	}
-
+	
 	public void setId(Integer id) {
 		this.id = id;
 	}   
 	public String getNom() {
 		return this.nom;
 	}
-
+	
 	public void setNom(String nom) {
 		this.nom = nom;
 	}   
 	public double getTaille() {
 		return this.taille;
 	}
-
 	public void setTaille(double taille) {
 		this.taille = taille;
 	}
