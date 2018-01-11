@@ -21,7 +21,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.criteria.Root;
 
 @Entity
-@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public class User implements Serializable {
 
 	@Id
@@ -142,7 +142,6 @@ public class User implements Serializable {
 
 	public User(String firstname, String lastname, String email, String username, String adresse, String password,
 			String phoneNumber, String gender, State state, byte[] picture, Role role) {
-		super();
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.email = email;

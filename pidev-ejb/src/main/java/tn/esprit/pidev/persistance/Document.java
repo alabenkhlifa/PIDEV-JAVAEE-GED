@@ -3,6 +3,7 @@ package tn.esprit.pidev.persistance;
 import java.io.Serializable;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
@@ -36,12 +37,89 @@ public class Document implements Serializable {
 	@OneToMany(mappedBy = "document")
 	@JsonIgnore
 	private List<WFHistory> history ;
+	@ManyToOne
+	private User users;
+	@ManyToOne
+	@JoinColumn(name = "category_fk", nullable = true)
+	private Category category;
+	@Lob
+	@Basic(fetch = FetchType.LAZY)
+	private byte[] picture;
+	private TypeDocument typeDocu;
+	private String titleDocument;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dateAjoutDocument;
+	private boolean signeeDocument; 
 	private static final long serialVersionUID = 1L;
 
 	public Document() {
 		super();
 	}   
 	
+	public List<Workflow> getWorkflows() {
+		return workflows;
+	}
+
+	public void setWorkflows(List<Workflow> workflows) {
+		this.workflows = workflows;
+	}
+
+	public User getUsers() {
+		return users;
+	}
+
+	public void setUsers(User users) {
+		this.users = users;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public byte[] getPicture() {
+		return picture;
+	}
+
+	public void setPicture(byte[] picture) {
+		this.picture = picture;
+	}
+
+	public TypeDocument getTypeDocu() {
+		return typeDocu;
+	}
+
+	public void setTypeDocu(TypeDocument typeDocu) {
+		this.typeDocu = typeDocu;
+	}
+
+	public String getTitleDocument() {
+		return titleDocument;
+	}
+
+	public void setTitleDocument(String titleDocument) {
+		this.titleDocument = titleDocument;
+	}
+
+	public Date getDateAjoutDocument() {
+		return dateAjoutDocument;
+	}
+
+	public void setDateAjoutDocument(Date dateAjoutDocument) {
+		this.dateAjoutDocument = dateAjoutDocument;
+	}
+
+	public boolean isSigneeDocument() {
+		return signeeDocument;
+	}
+
+	public void setSigneeDocument(boolean signeeDocument) {
+		this.signeeDocument = signeeDocument;
+	}
+
 	public List<WFHistory> getHistory() {
 		return history;
 	}

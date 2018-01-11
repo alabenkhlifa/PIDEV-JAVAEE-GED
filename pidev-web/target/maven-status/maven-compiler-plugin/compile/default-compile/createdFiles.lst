@@ -7,5 +7,6 @@ WFTypeBean.class
 wFStatusBean.class
 WorkflowBean.class
 EmployeeBean.class
+AuthentificationEndPoint.class
 DirecteurBean.class
 restActivator\RestActivator.class
