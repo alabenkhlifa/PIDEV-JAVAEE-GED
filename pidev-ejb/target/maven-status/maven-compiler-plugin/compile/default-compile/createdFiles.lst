@@ -1,11 +1,13 @@
 tn\esprit\pidev\persistance\TypeDocument.class
 tn\esprit\pidev\persistance\Token.class
 tn\esprit\pidev\persistance\PlainPassword.class
+tn\esprit\pidev\services\UserServiceLocal.class
 tn\esprit\pidev\persistance\WFHistoryPK.class
 tn\esprit\pidev\services\DirecteurService.class
 tn\esprit\pidev\services\TokenServiceRemote.class
 tn\esprit\pidev\services\UserManagment.class
 tn\esprit\pidev\persistance\Customer.class
+tn\esprit\pidev\services\UserServiceRemote.class
 tn\esprit\pidev\persistance\Role.class
 tn\esprit\pidev\services\HistoryService.class
 tn\esprit\pidev\persistance\WFStatus.class
@@ -21,6 +23,7 @@ tn\esprit\pidev\services\TokenService.class
 tn\esprit\pidev\persistance\State.class
 tn\esprit\pidev\persistance\WFPriorite.class
 tn\esprit\pidev\persistance\Workflow.class
+tn\esprit\pidev\services\UserService.class
 tn\esprit\pidev\services\EmployeeServiceLocal.class
 tn\esprit\pidev\services\WorkflowService.class
 tn\esprit\pidev\services\EmployeeService.class
@@ -29,10 +32,12 @@ tn\esprit\pidev\persistance\Employee.class
 tn\esprit\pidev\persistance\User.class
 tn\esprit\pidev\services\DocumentServiceRemote.class
 tn\esprit\pidev\services\UserManagmentRemote.class
+tn\esprit\pidev\services\FolderServiceLocal.class
 tn\esprit\pidev\services\MD5.class
 tn\esprit\pidev\persistance\WFType.class
 tn\esprit\pidev\persistance\Category.class
 tn\esprit\pidev\persistance\WFHistory.class
 tn\esprit\pidev\persistance\DepartementEnum.class
 tn\esprit\pidev\persistance\Directeur.class
+tn\esprit\pidev\services\FolderService.class
 tn\esprit\pidev\services\DocumentServiceLocal.class

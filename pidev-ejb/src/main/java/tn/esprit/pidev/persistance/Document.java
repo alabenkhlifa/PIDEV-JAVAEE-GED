@@ -54,6 +54,7 @@ public class Document implements Serializable {
 
 	public Document() {
 		super();
+		dateAjoutDocument = new Date();
 	}   
 	
 	public List<Workflow> getWorkflows() {

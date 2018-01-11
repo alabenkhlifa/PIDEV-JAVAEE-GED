@@ -60,5 +60,24 @@ public class DocumentService implements DocumentServiceLocal,DocumentServiceRemo
 		return getlistdocumentbyids(LI);
 		
 	}
+	
+	@Override
+	public void addDoc(Document doc) {
+		em.persist(doc);
+		
+	}
+
+	@Override
+	public void removeDoc(Document doc) {
+		em.remove(doc);
+		
+	}
+
+	@Override
+	public void updateDoc(Document doc) {
+		em.merge(doc);
+		
+	}
+
 
 }

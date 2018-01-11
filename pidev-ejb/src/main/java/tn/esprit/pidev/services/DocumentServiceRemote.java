@@ -18,5 +18,11 @@ public interface DocumentServiceRemote {
 	List<Document> getdocumentsbyworkflow(int workflowid);
 
 	Document testEM();
+	
+	void addDoc(Document doc);
+	
+	void removeDoc(Document doc);
+	
+	void updateDoc(Document doc);
 
 }

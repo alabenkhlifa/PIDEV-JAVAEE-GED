@@ -20,4 +20,10 @@ public interface DocumentServiceLocal {
 
 	Object testEM();
 
+	void addDoc(Document doc);
+
+	void removeDoc(Document doc);
+
+	void updateDoc(Document doc);
+
 }

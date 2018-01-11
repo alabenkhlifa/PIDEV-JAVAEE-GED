@@ -4,9 +4,11 @@ C:\Users\alabe\Desktop\Nouveau dossier\PIDEV-JAVAEE-GED\pidev-ejb\src\main\java\
 C:\Users\alabe\Desktop\Nouveau dossier\PIDEV-JAVAEE-GED\pidev-ejb\src\main\java\tn\esprit\pidev\persistance\Category.java
 C:\Users\alabe\Desktop\Nouveau dossier\PIDEV-JAVAEE-GED\pidev-ejb\src\main\java\tn\esprit\pidev\persistance\WFType.java
 C:\Users\alabe\Desktop\Nouveau dossier\PIDEV-JAVAEE-GED\pidev-ejb\src\main\java\tn\esprit\pidev\persistance\Workflow.java
+C:\Users\alabe\Desktop\Nouveau dossier\PIDEV-JAVAEE-GED\pidev-ejb\src\main\java\tn\esprit\pidev\services\FolderServiceLocal.java
 C:\Users\alabe\Desktop\Nouveau dossier\PIDEV-JAVAEE-GED\pidev-ejb\src\main\java\tn\esprit\pidev\services\DirecteurService.java
 C:\Users\alabe\Desktop\Nouveau dossier\PIDEV-JAVAEE-GED\pidev-ejb\src\main\java\tn\esprit\pidev\services\TokenServiceRemote.java
 C:\Users\alabe\Desktop\Nouveau dossier\PIDEV-JAVAEE-GED\pidev-ejb\src\main\java\tn\esprit\pidev\services\UserManagmentRemote.java
+C:\Users\alabe\Desktop\Nouveau dossier\PIDEV-JAVAEE-GED\pidev-ejb\src\main\java\tn\esprit\pidev\services\UserServiceLocal.java
 C:\Users\alabe\Desktop\Nouveau dossier\PIDEV-JAVAEE-GED\pidev-ejb\src\main\java\tn\esprit\pidev\services\MD5.java
 C:\Users\alabe\Desktop\Nouveau dossier\PIDEV-JAVAEE-GED\pidev-ejb\src\main\java\tn\esprit\pidev\services\UserManagment.java
 C:\Users\alabe\Desktop\Nouveau dossier\PIDEV-JAVAEE-GED\pidev-ejb\src\main\java\tn\esprit\pidev\persistance\WFHistoryPK.java
@@ -17,6 +19,7 @@ C:\Users\alabe\Desktop\Nouveau dossier\PIDEV-JAVAEE-GED\pidev-ejb\src\main\java\
 C:\Users\alabe\Desktop\Nouveau dossier\PIDEV-JAVAEE-GED\pidev-ejb\src\main\java\tn\esprit\pidev\persistance\Document.java
 C:\Users\alabe\Desktop\Nouveau dossier\PIDEV-JAVAEE-GED\pidev-ejb\src\main\java\tn\esprit\pidev\persistance\Role.java
 C:\Users\alabe\Desktop\Nouveau dossier\PIDEV-JAVAEE-GED\pidev-ejb\src\main\java\tn\esprit\pidev\persistance\TypeDocument.java
+C:\Users\alabe\Desktop\Nouveau dossier\PIDEV-JAVAEE-GED\pidev-ejb\src\main\java\tn\esprit\pidev\services\UserService.java
 C:\Users\alabe\Desktop\Nouveau dossier\PIDEV-JAVAEE-GED\pidev-ejb\src\main\java\tn\esprit\pidev\services\DocumentServiceLocal.java
 C:\Users\alabe\Desktop\Nouveau dossier\PIDEV-JAVAEE-GED\pidev-ejb\src\main\java\tn\esprit\pidev\persistance\Employee.java
 C:\Users\alabe\Desktop\Nouveau dossier\PIDEV-JAVAEE-GED\pidev-ejb\src\main\java\tn\esprit\pidev\Utils\DataBasePopulator.java
@@ -25,6 +28,8 @@ C:\Users\alabe\Desktop\Nouveau dossier\PIDEV-JAVAEE-GED\pidev-ejb\src\main\java\
 C:\Users\alabe\Desktop\Nouveau dossier\PIDEV-JAVAEE-GED\pidev-ejb\src\main\java\tn\esprit\pidev\persistance\Admin.java
 C:\Users\alabe\Desktop\Nouveau dossier\PIDEV-JAVAEE-GED\pidev-ejb\src\main\java\tn\esprit\pidev\persistance\DepartementEnum.java
 C:\Users\alabe\Desktop\Nouveau dossier\PIDEV-JAVAEE-GED\pidev-ejb\src\main\java\tn\esprit\pidev\persistance\Token.java
+C:\Users\alabe\Desktop\Nouveau dossier\PIDEV-JAVAEE-GED\pidev-ejb\src\main\java\tn\esprit\pidev\services\FolderService.java
+C:\Users\alabe\Desktop\Nouveau dossier\PIDEV-JAVAEE-GED\pidev-ejb\src\main\java\tn\esprit\pidev\services\UserServiceRemote.java
 C:\Users\alabe\Desktop\Nouveau dossier\PIDEV-JAVAEE-GED\pidev-ejb\src\main\java\tn\esprit\pidev\services\WorkflowServiceLocal.java
 C:\Users\alabe\Desktop\Nouveau dossier\PIDEV-JAVAEE-GED\pidev-ejb\src\main\java\tn\esprit\pidev\persistance\Customer.java
 C:\Users\alabe\Desktop\Nouveau dossier\PIDEV-JAVAEE-GED\pidev-ejb\src\main\java\tn\esprit\pidev\services\DirecteurServiceLocal.java
